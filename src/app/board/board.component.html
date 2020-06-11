@@ -1,0 +1,9 @@
+<!-- <app-tile *ngFor="let row of board"></app-tile> -->
+<h1>{{currentPlayer}}</h1>
+
+<div *ngFor="let boardRow of board; let row = index">
+  <app-tile
+    *ngFor="let boardCol of boardRow; let col = index"
+    [playerNumber]="boardCol"
+    (click)="makeMove(col)"></app-tile>
+</div>
