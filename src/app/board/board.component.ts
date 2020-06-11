@@ -72,7 +72,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkWinner(row: number, col: number) {
-    if (this.checkHorizontal(row, col)) {
+    if (this.checkHorizontal(row, col) || this.checkVertical(row, col)) {
       this.winner = true;
     }
   }
@@ -98,10 +98,25 @@ export class BoardComponent implements OnInit {
     }
 
     if (count >= 4) {
-      count = 0;
       return true;
     }
-    count = 0;
+
+    return false;
+  }
+
+  checkVertical(row: number, col: number) {
+    let player = this.playerThatJustPlayed;
+    let count = 1;
+
+    while ((this.board[row+1] != undefined) && (this.board[row+1][col] == player)) {
+      count++;
+      row++;
+    }
+
+    if (count >= 4) {
+      return true;
+    }
+
     return false;
   }
 
