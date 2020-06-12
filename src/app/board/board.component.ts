@@ -34,11 +34,10 @@ export class BoardComponent implements OnInit {
     this.board[row].splice(col, 1, this.player1Next ? 1: 2);
     this.player1Next = !this.player1Next;
 
-    console.log(`Checking winner for: ${row}, ${col}`);
     this.checkWinner(row, col);
 
     if (this.winner) {
-      console.log("It friggen works!");
+      console.log("Someone won!!!!");
       this.winner = false;
     }
   }
@@ -72,7 +71,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkWinner(row: number, col: number) {
-    if (this.checkHorizontal(row, col) || this.checkVertical(row, col)) {
+    if (this.checkHorizontal(row, col) || this.checkVertical(row, col) || this.checkDiagonalRight(row, col) || this.checkDiagonalLeft(row, col)) {
       this.winner = true;
     }
   }
@@ -111,6 +110,60 @@ export class BoardComponent implements OnInit {
     while ((this.board[row+1] != undefined) && (this.board[row+1][col] == player)) {
       count++;
       row++;
+    }
+
+    if (count >= 4) {
+      return true;
+    }
+
+    return false;
+  }
+
+  checkDiagonalRight(rowStart: number, colStart: number) {
+    let player = this.playerThatJustPlayed;
+    let count = 1;
+
+    let row = rowStart;
+    let col = colStart;
+    while ((row-1 >= 0) && (col+1 <= 6) && (this.board[row-1][col+1] == player)) {
+      count++;
+      row--;
+      col++;
+    }
+
+    row = rowStart;
+    col = colStart;
+    while ((row+1 <= 5) && (col-1 >= 0) && (this.board[row+1][col-1] == player)) {
+      count++;
+      row++;
+      col--;
+    }
+
+    if (count >= 4) {
+      return true;
+    }
+
+    return false;
+  }
+
+  checkDiagonalLeft(rowStart: number, colStart: number) {
+    let player = this.playerThatJustPlayed;
+    let count = 1;
+
+    let row = rowStart;
+    let col = colStart;
+    while ((row-1 >= 0) && (col-1 >= 0) && (this.board[row-1][col-1] == player)) {
+      count++;
+      row--;
+      col--;
+    }
+
+    row = rowStart;
+    col = colStart;
+    while ((row+1 <= 5) && (col+1 <= 6) && (this.board[row+1][col+1] == player)) {
+      count++;
+      row++;
+      col++;
     }
 
     if (count >= 4) {
