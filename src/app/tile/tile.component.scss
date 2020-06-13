@@ -1,7 +1,20 @@
-.btn {
+// .btn {
+//   border-radius: 50%;
+//   height: 40px;
+//   width: 40px;
+// }
+.button {
   border-radius: 50%;
+  border: none;
   height: 40px;
   width: 40px;
+  margin: 5px;
+}
+
+.button:active,
+.button:focus {
+  outline: 0;
+  border: none;
 }
 
 .player1 {
@@ -9,5 +22,5 @@
 }
 
 .player2 {
-  background-color: blue
+  background-color: turquoise;
 }

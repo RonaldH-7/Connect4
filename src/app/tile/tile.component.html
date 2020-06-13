@@ -1,5 +1,7 @@
-<!-- <button class="btn btn-outline-dark">{{ playerNumber }}</button> -->
-
-<button class="btn btn-outline-dark" *ngIf="playerNumber == 0"></button>
+<!-- <button class="btn btn-outline-dark" *ngIf="playerNumber == 0"></button>
 <button class="btn btn-outline-dark" [class]="{'player1' : playerNumber == 1}" *ngIf="playerNumber == 1"></button>
-<button class="btn btn-outline-dark" [class]="{'player2' : playerNumber == 2}" *ngIf="playerNumber == 2"></button>
+<button class="btn btn-outline-dark" [class]="{'player2' : playerNumber == 2}" *ngIf="playerNumber == 2"></button> -->
+
+<button class="button" *ngIf="playerNumber == 0"></button>
+<button class="button" [class]="{'player1' : playerNumber == 1}" *ngIf="playerNumber == 1"></button>
+<button class="button" [class]="{'player2' : playerNumber == 2}" *ngIf="playerNumber == 2"></button>
