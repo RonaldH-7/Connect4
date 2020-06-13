@@ -27,6 +27,11 @@ export class BoardComponent implements OnInit {
   // Adds a 1 or 2 to the given coordinate depending on which player
   // Swaps the next player variable
   makeMove(col: number) {
+    // Will prevent clicking if there is a winner
+    if (this.winner) {
+      return;
+    }
+
     let row = this.getAvailableRow(col);
     if (row == -1) {
       return;
@@ -35,14 +40,14 @@ export class BoardComponent implements OnInit {
     this.player1Next = !this.player1Next;
 
     this.checkWinner(row, col);
-
-    if (this.winner) {
-      console.log("Someone won!!!!");
-      this.winner = false;
-    }
   }
 
   onMouseOver(col: number) {
+    // Will prevent clicking if there is a winner
+    if (this.winner) {
+      return;
+    }
+
     let row = this.getAvailableRow(col);
     if (row == -1) {
       return;

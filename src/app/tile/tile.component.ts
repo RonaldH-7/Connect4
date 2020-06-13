@@ -9,6 +9,7 @@ export class TileComponent implements OnInit {
   // @Input() playerNumber: number = null;
   @Input() tileNumber: number = null;
   @Input() isGhost: boolean;
+  @Input() isDisabled: boolean;
 
   constructor() { }
 
