@@ -67,10 +67,11 @@ export class BoardComponent implements OnInit {
     return this.player1Next ? 1 : 2;
   }
 
-  // Test for ghost row
   getAvailableRow(col: number, row = 0) {
+    let emptyTiles = [0, 3, 4]
+
     // If top row is not empty, return -1
-    if ((this.board[0][col] != 0) && (this.board[0][col] != 3) && (this.board[0][col] != 4)) {
+    if (!emptyTiles.includes(this.board[0][col])) {
       return -1;
     }
     // If available row is the last row, return 5
@@ -78,11 +79,11 @@ export class BoardComponent implements OnInit {
       return 5;
     }
     // If the next row is not empty, return current row
-    if ((this.board[row+1][col] != 0) && (this.board[row+1][col] != 3) && (this.board[row+1][col] != 4)) {
+    if (!emptyTiles.includes(this.board[row+1][col])) {
       return row;
     }
     // If next row is empty, recursively call this function
-    if ((this.board[row+1][col] == 0) || (this.board[row+1][col] == 3) || (this.board[row+1][col] == 4)) {
+    if (emptyTiles.includes(this.board[row+1][col])) {
       return this.getAvailableRow(col, row+1);
     }
   }
