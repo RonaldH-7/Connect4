@@ -59,7 +59,7 @@ export class BoardComponent implements OnInit {
   }
 
   get currentPlayer() {
-    return this.player1Next ? "1" : "2";
+    return this.player1Next ? 1 : 2;
   }
 
   // Test for ghost row
