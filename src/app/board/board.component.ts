@@ -42,14 +42,30 @@ export class BoardComponent implements OnInit {
     }
   }
 
+  onMouseOver(col: number) {
+    let row = this.getAvailableRow(col);
+    if (row == -1) {
+      return;
+    }
+    this.board[row].splice(col, 1, this.player1Next ? 3: 4);
+  }
+
+  onMouseLeave(col: number) {
+    let row = this.getAvailableRow(col);
+    if (row == -1) {
+      return;
+    }
+    this.board[row].splice(col, 1, 0);
+  }
+
   get currentPlayer() {
     return this.player1Next ? "1" : "2";
   }
 
-  // Determines which row to place the piece
+  // Test for ghost row
   getAvailableRow(col: number, row = 0) {
     // If top row is not empty, return -1
-    if (this.board[0][col] != 0) {
+    if ((this.board[0][col] != 0) && (this.board[0][col] != 3) && (this.board[0][col] != 4)) {
       return -1;
     }
     // If available row is the last row, return 5
@@ -57,16 +73,16 @@ export class BoardComponent implements OnInit {
       return 5;
     }
     // If the next row is not empty, return current row
-    if (this.board[row+1][col] != 0) {
+    if ((this.board[row+1][col] != 0) && (this.board[row+1][col] != 3) && (this.board[row+1][col] != 4)) {
       return row;
     }
     // If next row is empty, recursively call this function
-    if (this.board[row+1][col] == 0) {
+    if ((this.board[row+1][col] == 0) || (this.board[row+1][col] == 3) || (this.board[row+1][col] == 4)) {
       return this.getAvailableRow(col, row+1);
     }
   }
 
-  get playerThatJustPlayed() {
+  get previousPlayer() {
     return this.player1Next ? 2 : 1;
   }
 
@@ -77,7 +93,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkHorizontal(rowStart: number, colStart: number) {
-    let player = this.playerThatJustPlayed;
+    let player = this.previousPlayer;
     let count = 1;
 
     // Checks the number of matching pieces to the left
@@ -104,7 +120,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkVertical(row: number, col: number) {
-    let player = this.playerThatJustPlayed;
+    let player = this.previousPlayer;
     let count = 1;
 
     while ((this.board[row+1] != undefined) && (this.board[row+1][col] == player)) {
@@ -120,7 +136,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkDiagonalRight(rowStart: number, colStart: number) {
-    let player = this.playerThatJustPlayed;
+    let player = this.previousPlayer;
     let count = 1;
 
     let row = rowStart;
@@ -147,7 +163,7 @@ export class BoardComponent implements OnInit {
   }
 
   checkDiagonalLeft(rowStart: number, colStart: number) {
-    let player = this.playerThatJustPlayed;
+    let player = this.previousPlayer;
     let count = 1;
 
     let row = rowStart;
@@ -172,34 +188,5 @@ export class BoardComponent implements OnInit {
 
     return false;
   }
-
-  // checkWest(col: number, row: number) {
-  //   let playerNumber = this.playerThatJustPlayed;
-  //   let possibleDirections = [];
-
-  //   // Checks w
-  //   if (this.board[row][col-1] != undefined) {
-  //     if (this.board[row][col-1] == playerNumber) {
-  //       possibleDirections.push({col: col-1, row: row, direction: "w", count: 2});
-  //     }
-  //   }
-  // }
-
-  // checkWest(row: number, col: number, count = 1) {
-  //   let playerNumber = this.playerThatJustPlayed;
-
-  //   if (count == 4) {
-  //     return true;
-  //   }
-  //   if (this.board[row][col-1] != undefined) {
-  //     if (this.board[row][col-1] == playerNumber) {
-  //       console.log("here");
-  //       this.checkWest(row, col-1, count++);
-  //     }
-  //   }
-  //   return false;
-  // }
-
-
 
 }

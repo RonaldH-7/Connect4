@@ -1,7 +1,54 @@
-<!-- <button class="btn btn-outline-dark" *ngIf="playerNumber == 0"></button>
-<button class="btn btn-outline-dark" [class]="{'player1' : playerNumber == 1}" *ngIf="playerNumber == 1"></button>
-<button class="btn btn-outline-dark" [class]="{'player2' : playerNumber == 2}" *ngIf="playerNumber == 2"></button> -->
+<!-- Default button -->
+<!-- <button
+  class="button"
+  *ngIf="playerNumber == 0">
+</button> -->
 
-<button class="button" *ngIf="playerNumber == 0"></button>
-<button class="button" [class]="{'player1' : playerNumber == 1}" *ngIf="playerNumber == 1"></button>
-<button class="button" [class]="{'player2' : playerNumber == 2}" *ngIf="playerNumber == 2"></button>
+<!-- Orange button -->
+<!-- <button
+  class="button"
+  [class]="{'player1' : playerNumber == 1}"
+  *ngIf="playerNumber == 1">
+</button> -->
+
+<!-- Blue button -->
+<!-- <button
+  class="button"
+  [class]="{'player2' : playerNumber == 2}"
+  *ngIf="playerNumber == 2">
+</button> -->
+
+<!-- Default button -->
+<button
+  class="button"
+  *ngIf="tileNumber == 0">
+</button>
+
+<!-- Orange button -->
+<button
+  class="button"
+  [class]="{'playerOrange' : tileNumber == 1}"
+  *ngIf="tileNumber == 1">
+</button>
+
+<!-- Blue button -->
+<button
+  class="button"
+  [class]="{'playerBlue' : tileNumber == 2}"
+  *ngIf="tileNumber == 2">
+</button>
+
+<!-- Ghost orange button -->
+<button
+  class="button"
+  [class]="{'ghostOrange' : tileNumber == 3}"
+  *ngIf="tileNumber == 3">
+</button>
+
+<!-- Ghost blue button -->
+<button
+  class="button"
+  [class]="{'ghostBlue' : tileNumber == 4}"
+  *ngIf="tileNumber == 4">
+</button>
+

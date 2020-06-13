@@ -3,7 +3,10 @@
 
 <div *ngFor="let boardRow of board; let row = index">
   <app-tile
-    *ngFor="let boardCol of boardRow; let col = index"
-    [playerNumber]="boardCol"
-    (click)="makeMove(col)"></app-tile>
+    *ngFor="let tileNumber of boardRow; let col = index"
+    [tileNumber]="tileNumber"
+    (click)="makeMove(col)"
+    (mouseover)="onMouseOver(col)"
+    (mouseleave)="onMouseLeave(col)">
+  </app-tile>
 </div>

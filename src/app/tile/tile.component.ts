@@ -7,7 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TileComponent implements OnInit {
   // @Input() playerNumber: number = null;
-  @Input() playerNumber: number = null;
+  @Input() tileNumber: number = null;
+  @Input() isGhost: boolean;
 
   constructor() { }
 
