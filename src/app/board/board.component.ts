@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScoreboardService } from '../scoreboard.service';
 
 @Component({
   selector: 'app-board',
@@ -18,7 +19,7 @@ export class BoardComponent implements OnInit {
     [0, 0, 0, 0, 0, 0, 0]
   ]
 
-  constructor() { }
+  constructor(private scoreBoard: ScoreboardService) { }
 
   ngOnInit(): void {
     // this.board = Array(6).fill(Array(7).fill(0));
@@ -107,6 +108,7 @@ export class BoardComponent implements OnInit {
 
   checkWinner(row: number, col: number) {
     if (this.checkHorizontal(row, col) || this.checkVertical(row, col) || this.checkDiagonalRight(row, col) || this.checkDiagonalLeft(row, col)) {
+      this.previousPlayer == 1 ? this.scoreBoard.numWinsPlayer1++ : this.scoreBoard.numWinsPlayer2++;
       this.winner = true;
     }
   }

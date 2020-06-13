@@ -4,16 +4,19 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { TileComponent } from './tile/tile.component';
+import { ScoreboardService } from './scoreboard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BoardComponent,
-    TileComponent
+    TileComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,7 @@ import { AppRoutingModule } from './app-routing.module';
     NbEvaIconsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ScoreboardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
