@@ -7,6 +7,8 @@
   <h1>Winner: <button class="button" [class]="{'orange': previousPlayer == 1, 'blue': previousPlayer == 2}"></button></h1>
 </div>
 
+<button nbButton outline status="danger" size="small" class="mb-2" (click)="newGame()">New Game</button>
+
 <div *ngFor="let boardRow of board; let row = index">
   <app-tile
     *ngFor="let tileNumber of boardRow; let col = index"

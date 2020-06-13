@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BoardComponent } from './board/board.component';
 import { TileComponent } from './tile/tile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbButtonModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -20,6 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     NbThemeModule.forRoot({ name: 'dark' }),
     NbLayoutModule,
+    NbButtonModule,
     NbEvaIconsModule,
     AppRoutingModule
   ],

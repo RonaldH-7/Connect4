@@ -24,6 +24,19 @@ export class BoardComponent implements OnInit {
     // this.board = Array(6).fill(Array(7).fill(0));
   }
 
+  newGame() {
+    this.board = [
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0]
+    ]
+    this.player1Next = true;
+    this.winner = false;
+  }
+
   // Adds a 1 or 2 to the given coordinate depending on which player
   // Swaps the next player variable
   makeMove(col: number) {
