@@ -1,21 +1,37 @@
-<!-- <h1>Current Player: {{currentPlayer}}</h1> -->
-<div *ngIf="winner == false">
-  <h1>Current Player: <button class="button" [class]="{'orange': currentPlayer == 1, 'blue': currentPlayer == 2}"></button></h1>
+<div class="container-fluid mobile">
+  <div *ngIf="winner == false">
+    <h2>Current Player: <button class="button" [class]="{'orange': currentPlayer == 1, 'blue': currentPlayer == 2}"></button></h2>
+  </div>
+
+  <div *ngIf="winner == true">
+    <h2>Winner: <button class="button" [class]="{'orange': previousPlayer == 1, 'blue': previousPlayer == 2}"></button></h2>
+  </div>
+
+  <button class="btn btn-sm btn-outline-danger hover-red mb-2" (click)="newGame()">New Game</button>
+  <!-- <button class="btn btn-undo btn-sm btn-outline-info mb-2" [class]="{'disabled': !canUndo || winner}" (click)="undo()">Undo Move</button> -->
+  <button
+    class="btn btn-undo btn-sm btn-outline-secondary mb-2 ml-2"
+    [class]="{
+      'disabled': !canUndo || winner,
+      'btn-outline-dark': !canUndo,
+      'btn-outline-warning': previousPlayer == 1 && !winner,
+      'btn-outline-info': previousPlayer == 2 && !winner,
+      'hover-orange': previousPlayer == 1 && canUndo,
+      'hover-blue': previousPlayer == 2 && canUndo
+    }"
+    (click)="undo()">
+    Undo Move
+  </button>
+
+  <div *ngFor="let boardRow of board; let row = index">
+    <app-tile
+      *ngFor="let tileNumber of boardRow; let col = index"
+      [tileNumber]="tileNumber"
+      (click)="makeMove(col)"
+      (mouseover)="onMouseOver(col)"
+      (mouseleave)="onMouseLeave(col)"
+      [isDisabled]="winner">
+    </app-tile>
+  </div>
 </div>
 
-<div *ngIf="winner == true">
-  <h1>Winner: <button class="button" [class]="{'orange': previousPlayer == 1, 'blue': previousPlayer == 2}"></button></h1>
-</div>
-
-<button nbButton outline status="danger" size="small" class="mb-2" (click)="newGame()">New Game</button>
-
-<div *ngFor="let boardRow of board; let row = index">
-  <app-tile
-    *ngFor="let tileNumber of boardRow; let col = index"
-    [tileNumber]="tileNumber"
-    (click)="makeMove(col)"
-    (mouseover)="onMouseOver(col)"
-    (mouseleave)="onMouseLeave(col)"
-    [isDisabled]="winner">
-  </app-tile>
-</div>

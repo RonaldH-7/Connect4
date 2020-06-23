@@ -1,11 +1,21 @@
 .button {
   border-radius: 50%;
   border: none;
-  height: 40px;
-  width: 40px;
+  height: 10vw;
+  width: 10vw;
   margin: 5px;
   pointer-events: none;
   vertical-align: middle;
+}
+@media only screen and (min-width: 415px) {
+  .button {
+    height: 40px;
+    width: 40px;
+  }
+}
+
+.mobile {
+  min-width: 300px;
 }
 
 .orange {
@@ -15,3 +25,32 @@
 .blue {
   background-color: turquoise;
 }
+
+.btn {
+  font-weight: bold;
+  transition: background-color 0.1s;
+  text-transform: uppercase;
+  font-size: smaller;
+  padding: 8px 15px 8px 15px;
+}
+
+.hover-red:hover {
+  background-color: rgb(220, 53, 69, 0.2);
+  color: rgb(220, 53, 69);
+}
+
+.hover-orange:hover {
+  background-color: rgb(255, 193, 7, 0.2);
+  color: rgb(255, 193, 7);
+}
+
+.hover-blue:hover {
+  background-color: rgb(64, 224, 208, 0.2);
+  color: rgb(64, 224, 208);
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+// border: solid 1px rgb(64, 224, 208);

@@ -22,34 +22,34 @@
 <button
   class="button"
   *ngIf="tileNumber == 0"
-  [class]="{'isDisabled': isDisabled}">
+  [class]="{'tile-default' : tileNumber == 0, 'isDisabled': isDisabled}">
 </button>
 
 <!-- Orange button -->
 <button
   class="button"
-  [class]="{'playerOrange' : tileNumber == 1, 'isDisabled': isDisabled}"
+  [class]="{'tile-orange' : tileNumber == 1, 'tile-disabled': isDisabled}"
   *ngIf="tileNumber == 1">
 </button>
 
 <!-- Blue button -->
 <button
   class="button"
-  [class]="{'playerBlue' : tileNumber == 2, 'isDisabled': isDisabled}"
+  [class]="{'tile-blue' : tileNumber == 2, 'tile-disabled': isDisabled}"
   *ngIf="tileNumber == 2">
 </button>
 
 <!-- Ghost orange button -->
 <button
   class="button"
-  [class]="{'ghostOrange' : tileNumber == 3, 'isDisabled': isDisabled}"
+  [class]="{'tile-orange-ghost' : tileNumber == 3, 'tile-disabled': isDisabled}"
   *ngIf="tileNumber == 3">
 </button>
 
 <!-- Ghost blue button -->
 <button
   class="button"
-  [class]="{'ghostBlue' : tileNumber == 4, 'isDisabled': isDisabled}"
+  [class]="{'tile-blue-ghost' : tileNumber == 4, 'tile-disabled': isDisabled}"
   *ngIf="tileNumber == 4">
 </button>
 

@@ -1,10 +1,23 @@
 .button {
   border-radius: 50%;
   border: none;
-  height: 40px;
-  width: 40px;
-  margin: 5px;
+  width: 10vw;
+  height: 10vw;
+  margin: 2px;
 }
+@media only screen and (min-width: 376px) {
+  .button {
+    margin: 3px;
+  }
+}
+@media only screen and (min-width: 415px) {
+  .button {
+    height: 40px;
+    width: 40px;
+    margin: 5px;
+  }
+}
+
 // Don't really need the :active selector
 .button:active,
 .button:focus {
@@ -12,22 +25,26 @@
   border: none;
 }
 
-.playerOrange {
+.tile-default {
+  background-color: white;
+}
+
+.tile-orange {
   background-color: orange;
 }
 
-.ghostOrange {
+.tile-orange-ghost {
   background-color: rgb(255, 227, 175);
 }
 
-.playerBlue {
+.tile-blue {
   background-color: turquoise;
 }
 
-.ghostBlue {
+.tile-blue-ghost {
   background-color: rgb(194, 255, 249);
 }
 
-.isDisabled {
+.tile-disabled {
   pointer-events: none;
 }

@@ -6,8 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./tile.component.scss']
 })
 export class TileComponent implements OnInit {
-  // @Input() playerNumber: number = null;
-  @Input() tileNumber: number = null;
+  // @Input() tileNumber: number = null;
+  @Input() tileNumber: number;
   @Input() isGhost: boolean;
   @Input() isDisabled: boolean;
 

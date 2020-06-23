@@ -9,6 +9,9 @@ import { ScoreboardService } from '../scoreboard.service';
 export class BoardComponent implements OnInit {
   player1Next: boolean = true;
   winner: boolean = false;
+  prevRow: number;
+  prevCol: number;
+  canUndo: boolean = false;
 
   board = [
     [0, 0, 0, 0, 0, 0, 0],
@@ -36,6 +39,17 @@ export class BoardComponent implements OnInit {
     ]
     this.player1Next = true;
     this.winner = false;
+    this.canUndo = false;
+  }
+
+  undo() {
+    if ((!this.canUndo) || (this.winner)) {
+      return;
+    }
+
+    this.board[this.prevRow].splice(this.prevCol, 1, 0);
+    this.player1Next = !this.player1Next;
+    this.canUndo = false;
   }
 
   // Adds a 1 or 2 to the given coordinate depending on which player
@@ -53,28 +67,36 @@ export class BoardComponent implements OnInit {
     this.board[row].splice(col, 1, this.player1Next ? 1: 2);
     this.player1Next = !this.player1Next;
 
+    this.canUndo = true;
+    this.prevCol = col;
+    this.prevRow = row;
+
     this.checkWinner(row, col);
   }
 
   onMouseOver(col: number) {
-    // Will prevent clicking if there is a winner
-    if (this.winner) {
-      return;
-    }
+    if (window.innerWidth > 500) {
+      // Will prevent clicking if there is a winner
+      if (this.winner) {
+        return;
+      }
 
-    let row = this.getAvailableRow(col);
-    if (row == -1) {
-      return;
+      let row = this.getAvailableRow(col);
+      if (row == -1) {
+        return;
+      }
+      this.board[row].splice(col, 1, this.player1Next ? 3: 4);
     }
-    this.board[row].splice(col, 1, this.player1Next ? 3: 4);
   }
 
   onMouseLeave(col: number) {
-    let row = this.getAvailableRow(col);
-    if (row == -1) {
-      return;
+    if (window.innerWidth > 500) {
+      let row = this.getAvailableRow(col);
+      if (row == -1) {
+        return;
+      }
+      this.board[row].splice(col, 1, 0);
     }
-    this.board[row].splice(col, 1, 0);
   }
 
   get currentPlayer() {
